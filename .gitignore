@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.ipynb_checkpoints
+.pydevproject
+.project
 
 # C extensions
 *.so
@@ -102,3 +105,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# custom directory structure - RT
+logs
+corpus
+models
+/**/secret
+
+*.bak
+*.html
+
