@@ -34,8 +34,8 @@ def getFileLogger(logDir, logFileName, name='file_logger', level=20):
         ch.setLevel(logging.INFO)
         
         # create formatter and add it to the handlers
-        file_formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
-        console_formatter = logging.Formatter('%(message)s')
+        file_formatter = logging.Formatter(u'%(asctime)s | %(levelname)s | %(message)s')
+        console_formatter = logging.Formatter(u'%(message)s')
         
         fh.setFormatter(file_formatter)
         ch.setFormatter(console_formatter)
