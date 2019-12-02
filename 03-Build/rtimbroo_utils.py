@@ -211,5 +211,51 @@ def updateDictCount(key,dict):
         dict[key] = 1
 ##------------------------------------------------------------------------
 
+##------------------------------------------------------------------------
+# Util Function, 
+# from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+##------------------------------------------------------------------------ 
+def classify_vader_score_threshold(compound_score):
+    pos_sent = 'positive'
+    neu_sent = 'neutral'
+    neg_sent = 'negative'
+    sentiment_class = ''
+    
+    if compound_score >= 0.05:
+        sentiment_class = pos_sent;
+    elif compound_score > -0.05 and compound_score < 0.05:
+        sentiment_class = neu_sent;
+    elif compound_score <= -0.05:
+        sentiment_class = neg_sent;
+    else:
+        logger.warning(f'classify_vader_score_threshold: compound score not in range: {compound_score}')
+    return sentiment_class
 
+##------------------------------------------------------------------------
+# Util Function, 
+# 
+##------------------------------------------------------------------------
+def classify_senti_strength(scores):
+    logger.debug(scores)
+    pos_sent = 'positive'
+    neu_sent = 'neutral'
+    neg_sent = 'negative'
+    sentiment_class = ''
+    
+    logger.debug(f'pos_score:{scores[0]} | neg_score: {scores[1]}')
+    pos_score = scores[0]
+    neg_score = scores[1]
+    logger.debug(f'score = {(pos_score+neg_score)}')
+    
+    if (pos_score+neg_score) >= 1:
+        sentiment_class = pos_sent
+    elif (pos_score+neg_score)  < 0:
+        sentiment_class = neg_sent
+    elif (pos_score+neg_score)  == 0:
+        sentiment_class = neu_sent
+    else:
+        logger.warning(f'classify_senti_strength: score not in range: {scores}')
+
+        
+    return sentiment_class
 
