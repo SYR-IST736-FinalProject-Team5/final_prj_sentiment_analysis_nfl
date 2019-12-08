@@ -13,8 +13,8 @@ import os
 import pandas as pd
 import seaborn
 
-path = os.path.join('~',
-                    'Downloads',
+path = os.path.join('..',
+                    'data',
                     'nfl_master_sent_merged_timeseries.csv')
 
 nfl_ts = pd.read_csv(path)

@@ -155,7 +155,7 @@ def PrintCvScores(cv_results):
     PrintScores('test_f1_weighted', cv_results)
     
 # Load the tweets
-tweets = pd.read_csv('tweets_labeled.tsv',
+tweets = pd.read_csv('../data/tweets_labeled.tsv',
                      sep='\t',
                      parse_dates = ['created_at'])
 
@@ -536,7 +536,7 @@ PrintTopNFeatures(10,
 print ("------------------------")
 print ()
 
-nfl_sent_pd = pd.read_csv('nfl_sent_labeled.csv', parse_dates=['created_at'])
+nfl_sent_pd = pd.read_csv('../data/nfl_sent_labeled.csv', parse_dates=['created_at'])
 #nfl_sent_pd['created_at'] = pd.to_datetime(nfl_sent_pd['created_at'],
 #             format = '%a %b %d %H:%M:%S %z %Y')
 
@@ -575,10 +575,16 @@ clf = SimpleFit(LinearSVC(),
                 sent_pregame,
                 sent_pregame_labels_small)
 
+print("LinearSVC sentiment down week")
+
 PrintAccuracyReport(clf,
                     sent_gametime,
                     sent_game_week_labels_small,
                     ['d', 'u'])
+
+print ("------------------------")
+print ()
+
 
 pre_game_time = datetime(2019, 11, 21, 19, 20, 0, 0, central_time)
 game_time = datetime(2019, 12, 1, 19, 20, 0, 0, central_time)
@@ -618,16 +624,21 @@ clf = SimpleFit(LinearSVC(),
                 sent_pregame,
                 sent_pregame_labels_small)
 
+print("LinearSVC sentiment up week")
+
 PrintAccuracyReport(clf,
                     sent_gametime,
                     sent_game_week_labels_small,
                     ['d', 'u'])
 
-tweets = pd.read_csv('tweets_points.tsv',
+print ("------------------------")
+print ()
+
+tweets = pd.read_csv('../data/tweets_points.tsv',
                      sep='\t',
                      parse_dates = ['created_at'])
 
-points = pd.read_csv('../Deshaun_Watson_Scoring.csv',
+points = pd.read_csv('../data/Deshaun_Watson_Scoring.csv',
                      parse_dates = ['Date'])
 
 points['Date'] = points['Date'].dt.tz_localize(central_time)
@@ -691,7 +702,8 @@ print(reg_scores)
 print(reg_points)
 print()
     
-nfl_sent_pd = pd.read_csv('nfl_sent_points_labeled.csv', parse_dates=['created_at'])
+nfl_sent_pd = pd.read_csv('../data/nfl_sent_points_labeled.csv',
+                          parse_dates=['created_at'])
 
 sent_reg_points = []
 sent_reg_models = []
